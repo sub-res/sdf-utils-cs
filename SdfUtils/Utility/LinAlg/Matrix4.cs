@@ -168,7 +168,49 @@ namespace SdfUtils.Utility.LinAlg
         }
         */
 
-        //  TODO: add matrix inversion method
+        public static Matrix4 Invert(Matrix4 m)
+        {
+            float s0 = m.m00 * m.m11 - m.m10 * m.m01;
+            float s1 = m.m00 * m.m12 - m.m10 * m.m02;
+            float s2 = m.m00 * m.m13 - m.m10 * m.m03;
+            float s3 = m.m01 * m.m12 - m.m11 * m.m02;
+            float s4 = m.m01 * m.m13 - m.m11 * m.m03;
+            float s5 = m.m02 * m.m13 - m.m12 * m.m03;
+
+            float c5 = m.m22 * m.m33 - m.m32 * m.m23;
+            float c4 = m.m21 * m.m33 - m.m31 * m.m23;
+            float c3 = m.m21 * m.m32 - m.m31 * m.m22;
+            float c2 = m.m20 * m.m33 - m.m30 * m.m23;
+            float c1 = m.m20 * m.m32 - m.m30 * m.m22;
+            float c0 = m.m20 * m.m31 - m.m30 * m.m21;
+
+            float det = s0 * c5 - s1 * c4 + s2 * c3 + s3 * c2 - s4 * c1 + s5 * c0;
+            if (det == 0)
+                throw new InvalidOperationException("Matrix is not invertible, determinant is 0.");
+            float inv_det = 1 / det;
+
+            return new Matrix4(
+                (m.m11 * c5 - m.m12 * c4 + m.m13 * c3) * inv_det,
+                (-m.m01 * c5 + m.m02 * c4 - m.m03 * c3) * inv_det,
+                (m.m31 * s5 - m.m32 * s4 + m.m33 * s3) * inv_det,
+                (-m.m21 * s5 + m.m22 * s4 - m.m23 * s3) * inv_det,
+
+                (-m.m10 * c5 + m.m12 * c2 - m.m13 * c1) * inv_det,
+                (m.m00 * c5 - m.m02 * c2 + m.m03 * c1) * inv_det,
+                (-m.m30 * s5 + m.m32 * s2 - m.m33 * s1) * inv_det,
+                (m.m20 * s5 - m.m22 * s2 + m.m23 * s1) * inv_det,
+
+                (m.m10 * c4 - m.m11 * c2 + m.m13 * c0) * inv_det,
+                (-m.m00 * c4 + m.m01 * c2 - m.m03 * c0) * inv_det,
+                (m.m30 * s4 - m.m31 * s2 + m.m33 * s0) * inv_det,
+                (-m.m20 * s4 + m.m21 * s2 - m.m23 * s0) * inv_det,
+
+                (-m.m10 * c3 + m.m11 * c1 - m.m12 * c0) * inv_det,
+                (m.m00 * c3 - m.m01 * c1 + m.m02 * c0) * inv_det,
+                (-m.m30 * s3 + m.m31 * s1 - m.m32 * s0) * inv_det,
+                (m.m20 * s3 - m.m21 * s1 + m.m22 * s0) * inv_det
+            );
+        }
 
         public static Matrix4 operator *(Matrix4 a, Matrix4 b)
         {
