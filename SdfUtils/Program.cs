@@ -24,12 +24,16 @@ namespace SdfUtils
         {
             int sz = 256;
 
-            SdfOp sdf = new SdfTransform(
-                new SdfUnion(
-                    new SdfPlane(new Vector3(1, 0, 0), 0, new Vector3(0xff, 0, 0)),
-                    new SdfSphere(64, new Vector3(0, 0xff, 0))
+            SdfOp sdf = new SdfRepeat(
+                new SdfSmoothUnion(
+                    new SdfBox(new Vector3(32, 32, 32), new Vector3(0xff, 0, 0)),
+                    new SdfTransform(
+                        new SdfSphere(16, new Vector3(0, 0xff, 0)),
+                        Matrix4.Translation(16, 16, 0)
+                    ),
+                    16
                 ),
-                Matrix4.Translation(sz / 2, sz / 2, 0)
+                new Vector3(64)
             );
 
             Bitmap bmp = new Bitmap(sz, sz);

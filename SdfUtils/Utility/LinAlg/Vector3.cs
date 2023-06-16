@@ -45,6 +45,8 @@ namespace SdfUtils.Utility.LinAlg
         public static Vector3 Min(Vector3 a, Vector3 b) { return new Vector3(Math.Min(a.x, b.x), Math.Min(a.y, b.y), Math.Min(a.z, b.z)); }
         public static Vector3 Mod(Vector3 a, Vector3 b) { return new Vector3(Algo.Mod(a.x, b.x), Algo.Mod(a.y, b.y), Algo.Mod(a.z, b.z)); }
         public static Vector3 Lerp(Vector3 a, Vector3 b, float t) { return new Vector3(Algo.Lerp(a.x, b.x, t), Algo.Lerp(a.y, b.y, t), Algo.Lerp(a.z, b.z, t)); }
+        public static Vector3 Round(Vector3 v) { return new Vector3((int)(v.x + 0.5f), (int)(v.y + 0.5f), (int)(v.z + 0.5f)); }
+        public static Vector3 Clamp(Vector3 v, Vector3 min, Vector3 max) { return new Vector3(Algo.Clamp(v.x, min.x, max.x), Algo.Clamp(v.y, min.y, max.y), Algo.Clamp(v.z, min.z, max.z)); }
 
         public float LengthSquared() { return Dot(this, this); }
         public float Length() { return (float)(Math.Sqrt(LengthSquared())); }
