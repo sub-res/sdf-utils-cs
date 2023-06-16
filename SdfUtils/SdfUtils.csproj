@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sdf\SdfOp.cs" />
+    <Compile Include="Sdf\SdfPrimitive.cs" />
+    <Compile Include="Sdf\SdfResult.cs" />
     <Compile Include="Utility\Algo.cs" />
     <Compile Include="Utility\LinAlg\Matrix4.cs" />
     <Compile Include="Utility\LinAlg\Vector3.cs" />
