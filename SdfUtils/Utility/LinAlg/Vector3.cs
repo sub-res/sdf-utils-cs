@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SdfUtils.Utility.LinAlg
 {
@@ -21,17 +17,17 @@ namespace SdfUtils.Utility.LinAlg
         public static Vector3 operator /(Vector3 a, Vector3 b) { return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z); }
         public static Vector3 operator %(Vector3 a, Vector3 b) { return new Vector3(a.x % b.x, a.y % b.y, a.z % b.z); }
 
-        public static Vector3 operator +(Vector3 v, float f) { return v + new Vector3(f); }
-        public static Vector3 operator -(Vector3 v, float f) { return v - new Vector3(f); }
-        public static Vector3 operator *(Vector3 v, float f) { return v * new Vector3(f); }
-        public static Vector3 operator /(Vector3 v, float f) { return v / new Vector3(f); }
-        public static Vector3 operator %(Vector3 v, float f) { return v % new Vector3(f); }
+        public static Vector3 operator +(Vector3 v, float f) { return new Vector3(v.x + f, v.y + f, v.z + f); }
+        public static Vector3 operator -(Vector3 v, float f) { return new Vector3(v.x - f, v.y - f, v.z - f); }
+        public static Vector3 operator *(Vector3 v, float f) { return new Vector3(v.x * f, v.y * f, v.z * f); }
+        public static Vector3 operator /(Vector3 v, float f) { return new Vector3(v.x / f, v.y / f, v.z / f); }
+        public static Vector3 operator %(Vector3 v, float f) { return new Vector3(v.x % f, v.y % f, v.z % f); }
 
-        public static Vector3 operator +(float f, Vector3 v) { return new Vector3(f) + f; }
-        public static Vector3 operator -(float f, Vector3 v) { return new Vector3(f) - f; }
-        public static Vector3 operator *(float f, Vector3 v) { return new Vector3(f) * f; }
-        public static Vector3 operator /(float f, Vector3 v) { return new Vector3(f) / f; }
-        public static Vector3 operator %(float f, Vector3 v) { return new Vector3(f) % f; }
+        public static Vector3 operator +(float f, Vector3 v) { return new Vector3(f + v.x, f + v.y, f + v.z); }
+        public static Vector3 operator -(float f, Vector3 v) { return new Vector3(f - v.x, f - v.y, f - v.z); }
+        public static Vector3 operator *(float f, Vector3 v) { return new Vector3(f * v.x, f * v.y, f * v.z); }
+        public static Vector3 operator /(float f, Vector3 v) { return new Vector3(f / v.x, f / v.y, f / v.z); }
+        public static Vector3 operator %(float f, Vector3 v) { return new Vector3(f % v.x, f % v.y, f % v.z); }
 
         public static Vector3 Normal(Vector3 v) { return v / v.Length(); }
         public static float Dot(Vector3 a, Vector3 b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
