@@ -22,9 +22,16 @@ namespace SdfUtils
         //  throwaway testing method
         static void Test()
         {
-            SdfOp sdf = new SdfPlane(new Vector3(1, 0, 0), 10, new Vector3(0xff, 0, 0));
-
             int sz = 256;
+
+            SdfOp sdf = new SdfTransform(
+                new SdfUnion(
+                    new SdfPlane(new Vector3(1, 0, 0), 0, new Vector3(0xff, 0, 0)),
+                    new SdfSphere(64, new Vector3(0, 0xff, 0))
+                ),
+                Matrix4.Translation(-sz / 2, -sz / 2, 0)
+            );
+
             Bitmap bmp = new Bitmap(sz, sz);
 
             //  TODO: use BitmapData instead for easy parallelization

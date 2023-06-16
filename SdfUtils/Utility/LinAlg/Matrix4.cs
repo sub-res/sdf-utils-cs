@@ -167,6 +167,9 @@ namespace SdfUtils.Utility.LinAlg
             return Transform(v);
         }
         */
+
+        //  TODO: add matrix inversion method
+
         public static Matrix4 operator *(Matrix4 a, Matrix4 b)
         {
             return new Matrix4(
